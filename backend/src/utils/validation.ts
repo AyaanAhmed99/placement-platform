@@ -34,8 +34,17 @@ export const projectSchema = z.object({
   githubUrl: z.url().optional(),
 });
 
+export const companySchema = z.object({
+  name: z.string().min(1),
+  description: z.string().optional(),
+  industry: z.string().optional(),
+  location: z.string().optional(),
+  website: z.url().optional(),
+});
+
 export type RegisterInput = z.infer<typeof registerSchema>;
 export type LoginInput = z.infer<typeof loginSchema>;
 export type EducationInput = z.infer<typeof educationSchema>;
 export type SkillInput = z.infer<typeof skillSchema>;
 export type ProjectInput = z.infer<typeof projectSchema>;
+export type CompanyInput = z.infer<typeof companySchema>;
