@@ -3,6 +3,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import { useAuth } from "./context/AuthContext";
+import Jobs from "./pages/Jobs";
 
 export default function App() {
   const { user } = useAuth();
@@ -24,6 +25,10 @@ export default function App() {
       <Route
         path="*"
         element={<Navigate to={user ? "/dashboard" : "/login"} />}
+      />
+      <Route
+        path="/jobs"
+        element={user ? <Jobs /> : <Navigate to="/login" />}
       />
     </Routes>
   );

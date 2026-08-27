@@ -1,6 +1,7 @@
 import { useAuth } from "../context/AuthContext";
 import RecruiterCompanyPanel from "../components/RecruiterCompanyPanel";
 import AdminCompanyApprovals from "../components/AdminCompanyApprovals";
+import RecruiterJobPanel from "../components/RecruiterJobPanel";
 
 export default function Dashboard() {
   const { user, logout } = useAuth();
@@ -15,15 +16,28 @@ export default function Dashboard() {
             </h1>
             <p className="text-slate-500 mt-1">Role: {user?.role}</p>
           </div>
-          <button
-            onClick={logout}
-            className="bg-slate-800 text-white px-4 py-2 rounded hover:bg-slate-900"
-          >
-            Log out
-          </button>
+          <div className="flex gap-2">
+            <a
+              href="/jobs"
+              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            >
+              Browse Jobs
+            </a>
+            <button
+              onClick={logout}
+              className="bg-slate-800 text-white px-4 py-2 rounded hover:bg-slate-900"
+            >
+              Log out
+            </button>
+          </div>
         </div>
 
-        {user?.role === "RECRUITER" && <RecruiterCompanyPanel />}
+        {user?.role === "RECRUITER" && (
+          <>
+            <RecruiterCompanyPanel />
+            <RecruiterJobPanel />
+          </>
+        )}
         {user?.role === "ADMIN" && <AdminCompanyApprovals />}
       </div>
     </div>
