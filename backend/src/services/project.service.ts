@@ -9,7 +9,9 @@ async function getStudentProfileId(userId: string) {
 
 export async function addProject(userId: string, input: ProjectInput) {
   const studentId = await getStudentProfileId(userId);
-  return prisma.project.create({ data: { ...input, studentId } });
+  return prisma.project.create({
+    data: { ...input, techStack: input.techStack ?? [], studentId },
+  });
 }
 
 export async function getProjects(userId: string) {
