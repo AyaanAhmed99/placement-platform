@@ -55,6 +55,8 @@ model RecruiterProfile {
   company   Company? @relation(fields: [companyId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  postedJobs Job[]
 }
 
 model Company {
@@ -69,6 +71,7 @@ model Company {
   updatedAt   DateTime @updatedAt
 
   recruiters  RecruiterProfile[]
+  jobs Job[]
 }
 
 model Education {
@@ -120,4 +123,34 @@ model Resume {
   fileUrl   String
   fileName  String
   uploadedAt DateTime @default(now())
+}
+
+enum JobType {
+  FULL_TIME
+  INTERNSHIP
+  PART_TIME
+}
+
+model Job {
+  id              String   @id @default(cuid())
+  companyId       String
+  company         Company  @relation(fields: [companyId], references: [id])
+  postedById      String
+  postedBy        RecruiterProfile @relation(fields: [postedById], references: [id])
+  title           String
+  description     String
+  location        String?
+  jobType         JobType  @default(FULL_TIME)
+  salaryMin       Int?
+  salaryMax       Int?
+
+  minCgpa         Float?
+  allowedBranches String[]
+  maxBacklogs     Int?
+  eligibleBatch   Int?
+  requiredSkills  String[]
+
+  approved        Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }

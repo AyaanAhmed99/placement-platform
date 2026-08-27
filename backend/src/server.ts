@@ -8,6 +8,7 @@ import skillRoutes from "./routes/skill.routes";
 import projectRoutes from "./routes/project.routes";
 import resumeRoutes from "./routes/resume.routes";
 import companyRoutes from "./routes/company.routes";
+import jobRoutes from "./routes/job.routes";
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use("/api/skills", skillRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/resume", resumeRoutes);
 app.use("/api/companies", companyRoutes);
+app.use("/api/jobs", jobRoutes);
 
 app.get("/api/health", (_req, res) => {
   res.json({
