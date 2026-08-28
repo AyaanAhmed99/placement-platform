@@ -11,6 +11,7 @@ import companyRoutes from "./routes/company.routes";
 import jobRoutes from "./routes/job.routes";
 import applicationRoutes from "./routes/application.routes";
 import adminRoutes from "./routes/admin.routes";
+import studentRoutes from "./routes/student.routes";
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use("/api/companies", companyRoutes);
 app.use("/api/jobs", jobRoutes);
 app.use("/api/applications", applicationRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/students", studentRoutes);
 
 app.get("/api/health", (_req, res) => {
   res.json({

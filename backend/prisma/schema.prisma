@@ -46,6 +46,7 @@ model StudentProfile {
   resume     Resume?
 
   applications Application[]
+  backlogs Int @default(0)
 }
 
 model RecruiterProfile {
@@ -82,7 +83,7 @@ model Education {
   student       StudentProfile @relation(fields: [studentId], references: [id])
   institution   String
   degree        String
-  fieldOfStudy  String
+  fieldOfStudy Branch
   cgpa          Float?
   startYear     Int
   endYear       Int?
@@ -147,7 +148,7 @@ model Job {
   salaryMax       Int?
 
   minCgpa         Float?
-  allowedBranches String[]
+  allowedBranches Branch[]
   maxBacklogs     Int?
   eligibleBatch   Int?
   requiredSkills  String[]
@@ -180,4 +181,15 @@ model Application {
   updatedAt     DateTime          @updatedAt
 
   @@unique([studentId, jobId])
+}
+
+enum Branch {
+  CSE
+  IT
+  ECE
+  EEE
+  MECH
+  CIVIL
+  CHEMICAL
+  OTHER
 }

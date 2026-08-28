@@ -35,8 +35,10 @@ export async function mine(req: Request, res: Response) {
   }
 }
 
-export async function listPublic(_req: Request, res: Response) {
-  const jobs = await getPublicJobs();
+export async function listPublic(req: Request, res: Response) {
+  const studentUserId =
+    req.user?.role === "STUDENT" ? req.user.userId : undefined;
+  const jobs = await getPublicJobs(studentUserId);
   res.status(200).json({ success: true, data: jobs });
 }
 

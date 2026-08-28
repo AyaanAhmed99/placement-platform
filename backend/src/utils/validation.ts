@@ -15,7 +15,16 @@ export const loginSchema = z.object({
 export const educationSchema = z.object({
   institution: z.string().min(1),
   degree: z.string().min(1),
-  fieldOfStudy: z.string().min(1),
+  fieldOfStudy: z.enum([
+    "CSE",
+    "IT",
+    "ECE",
+    "EEE",
+    "MECH",
+    "CIVIL",
+    "CHEMICAL",
+    "OTHER",
+  ]),
   cgpa: z.number().min(0).max(10).optional(),
   startYear: z.number().int(),
   endYear: z.number().int().optional(),
@@ -52,7 +61,11 @@ export const jobSchema = z.object({
   salaryMin: z.number().int().optional(),
   salaryMax: z.number().int().optional(),
   minCgpa: z.number().min(0).max(10).optional(),
-  allowedBranches: z.array(z.string()).optional(),
+  allowedBranches: z
+    .array(
+      z.enum(["CSE", "IT", "ECE", "EEE", "MECH", "CIVIL", "CHEMICAL", "OTHER"]),
+    )
+    .optional(),
   maxBacklogs: z.number().int().min(0).optional(),
   eligibleBatch: z.number().int().optional(),
   requiredSkills: z.array(z.string()).optional(),

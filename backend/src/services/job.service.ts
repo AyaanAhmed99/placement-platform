@@ -1,5 +1,6 @@
 import { prisma } from "../config/db";
 import { JobInput } from "../utils/validation";
+import { checkEligibility } from "./eligibility.service";
 
 async function getRecruiterWithCompany(userId: string) {
   const recruiter = await prisma.recruiterProfile.findUnique({
@@ -36,14 +37,28 @@ export async function getMyJobs(userId: string) {
 }
 
 // Public browse — students only ever see approved jobs from approved companies
-export async function getPublicJobs() {
-  return prisma.job.findMany({
+export async function getPublicJobs(studentUserId?: string) {
+  const jobs = await prisma.job.findMany({
     where: { approved: true, company: { approved: true } },
     include: {
       company: { select: { name: true, industry: true, location: true } },
     },
     orderBy: { createdAt: "desc" },
   });
+
+  if (!studentUserId) return jobs;
+
+  const student = await prisma.studentProfile.findUnique({
+    where: { userId: studentUserId },
+    include: { educations: true, skills: true },
+  });
+
+  if (!student) return jobs;
+
+  return jobs.map((job) => ({
+    ...job,
+    eligibility: checkEligibility(job, student),
+  }));
 }
 
 export async function getJobById(jobId: string) {
