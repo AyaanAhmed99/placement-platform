@@ -4,6 +4,8 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import { useAuth } from "./context/AuthContext";
 import Jobs from "./pages/Jobs";
+import MyApplications from "./pages/MyApplications";
+import JobApplicants from "./pages/JobApplicants";
 
 export default function App() {
   const { user } = useAuth();
@@ -29,6 +31,14 @@ export default function App() {
       <Route
         path="/jobs"
         element={user ? <Jobs /> : <Navigate to="/login" />}
+      />
+      <Route
+        path="/my-applications"
+        element={user ? <MyApplications /> : <Navigate to="/login" />}
+      />
+      <Route
+        path="/jobs/:jobId/applicants"
+        element={user ? <JobApplicants /> : <Navigate to="/login" />}
       />
     </Routes>
   );

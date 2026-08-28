@@ -23,6 +23,14 @@ export default function Dashboard() {
             >
               Browse Jobs
             </a>
+            {user?.role === "STUDENT" && (
+              <a
+                href="/my-applications"
+                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+              >
+                My Applications
+              </a>
+            )}
             <button
               onClick={logout}
               className="bg-slate-800 text-white px-4 py-2 rounded hover:bg-slate-900"

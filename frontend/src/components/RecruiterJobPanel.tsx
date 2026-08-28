@@ -167,15 +167,23 @@ export default function RecruiterJobPanel() {
                 {job.location ?? "No location"}
               </p>
             </div>
-            <span
-              className={`text-xs px-2 py-1 rounded-full ${
-                job.approved
-                  ? "bg-green-100 text-green-700"
-                  : "bg-yellow-100 text-yellow-700"
-              }`}
-            >
-              {job.approved ? "Approved" : "Pending approval"}
-            </span>
+            <div className="flex flex-col items-end gap-1">
+              <span
+                className={`text-xs px-2 py-1 rounded-full ${
+                  job.approved
+                    ? "bg-green-100 text-green-700"
+                    : "bg-yellow-100 text-yellow-700"
+                }`}
+              >
+                {job.approved ? "Approved" : "Pending approval"}
+              </span>
+              <a
+                href={`/jobs/${job.id}/applicants`}
+                className="text-xs text-blue-600 hover:underline"
+              >
+                View Applicants
+              </a>
+            </div>
           </div>
         ))}
       </div>
