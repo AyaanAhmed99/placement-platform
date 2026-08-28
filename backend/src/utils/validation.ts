@@ -58,6 +58,22 @@ export const jobSchema = z.object({
   requiredSkills: z.array(z.string()).optional(),
 });
 
+export const applySchema = z.object({
+  jobId: z.string().min(1),
+});
+
+export const updateApplicationStatusSchema = z.object({
+  status: z.enum([
+    "APPLIED",
+    "UNDER_REVIEW",
+    "SHORTLISTED",
+    "INTERVIEW_SCHEDULED",
+    "SELECTED",
+    "REJECTED",
+  ]),
+  interviewDate: z.iso.datetime().optional(),
+});
+
 export type RegisterInput = z.infer<typeof registerSchema>;
 export type LoginInput = z.infer<typeof loginSchema>;
 export type EducationInput = z.infer<typeof educationSchema>;

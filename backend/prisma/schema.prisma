@@ -44,6 +44,8 @@ model StudentProfile {
   skills     Skill[]
   projects   Project[]
   resume     Resume?
+
+  applications Application[]
 }
 
 model RecruiterProfile {
@@ -153,4 +155,29 @@ model Job {
   approved        Boolean  @default(false)
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
+
+  applications Application[]
+}
+
+enum ApplicationStatus {
+  APPLIED
+  UNDER_REVIEW
+  SHORTLISTED
+  INTERVIEW_SCHEDULED
+  SELECTED
+  REJECTED
+}
+
+model Application {
+  id            String            @id @default(cuid())
+  studentId     String
+  student       StudentProfile    @relation(fields: [studentId], references: [id])
+  jobId         String
+  job           Job               @relation(fields: [jobId], references: [id])
+  status        ApplicationStatus @default(APPLIED)
+  interviewDate DateTime?
+  appliedAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+
+  @@unique([studentId, jobId])
 }
