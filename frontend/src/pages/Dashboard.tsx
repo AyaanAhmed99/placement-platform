@@ -2,6 +2,8 @@ import { useAuth } from "../context/AuthContext";
 import RecruiterCompanyPanel from "../components/RecruiterCompanyPanel";
 import AdminCompanyApprovals from "../components/AdminCompanyApprovals";
 import RecruiterJobPanel from "../components/RecruiterJobPanel";
+import AdminStats from "../components/AdminStats";
+import AdminJobApprovals from "../components/AdminJobApprovals";
 
 export default function Dashboard() {
   const { user, logout } = useAuth();
@@ -46,7 +48,15 @@ export default function Dashboard() {
             <RecruiterJobPanel />
           </>
         )}
-        {user?.role === "ADMIN" && <AdminCompanyApprovals />}
+        {user?.role === "ADMIN" && (
+          <>
+            <div className="mt-4">
+              <AdminStats />
+            </div>
+            <AdminCompanyApprovals />
+            <AdminJobApprovals />
+          </>
+        )}
       </div>
     </div>
   );
