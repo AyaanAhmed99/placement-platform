@@ -98,6 +98,27 @@ export default function Jobs() {
                   )}
                 </div>
 
+                {user?.role === "STUDENT" && job.eligibility && (
+                  <div className="mt-3">
+                    {job.eligibility.eligible ? (
+                      <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-medium">
+                        ✓ You're eligible
+                      </span>
+                    ) : (
+                      <div>
+                        <span className="text-xs bg-red-50 text-red-600 px-2 py-1 rounded-full font-medium">
+                          Not eligible
+                        </span>
+                        <ul className="text-xs text-red-500 mt-1 list-disc list-inside">
+                          {job.eligibility.reasons.map((r, i) => (
+                            <li key={i}>{r}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                )}
+
                 {user?.role === "STUDENT" && (
                   <button
                     onClick={() => handleApply(job.id)}

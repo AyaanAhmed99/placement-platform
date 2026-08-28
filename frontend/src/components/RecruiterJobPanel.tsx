@@ -11,7 +11,7 @@ export default function RecruiterJobPanel() {
     description: "",
     location: "",
     minCgpa: "",
-    allowedBranches: "",
+    allowedBranches: [] as string[],
     maxBacklogs: "",
     eligibleBatch: "",
     requiredSkills: "",
@@ -127,14 +127,37 @@ export default function RecruiterJobPanel() {
             }
             className="w-full border border-slate-300 rounded px-3 py-2"
           />
-          <input
-            placeholder="Allowed branches (comma separated, e.g. CSE, IT)"
-            value={form.allowedBranches}
-            onChange={(e) =>
-              setForm({ ...form, allowedBranches: e.target.value })
-            }
-            className="w-full border border-slate-300 rounded px-3 py-2"
-          />
+          <div>
+            <label className="text-sm text-slate-600 block mb-1">
+              Allowed branches
+            </label>
+            <div className="flex flex-wrap gap-2">
+              {[
+                "CSE",
+                "IT",
+                "ECE",
+                "EEE",
+                "MECH",
+                "CIVIL",
+                "CHEMICAL",
+                "OTHER",
+              ].map((branch) => (
+                <label key={branch} className="flex items-center gap-1 text-sm">
+                  <input
+                    type="checkbox"
+                    checked={form.allowedBranches.includes(branch)}
+                    onChange={(e) => {
+                      const updated = e.target.checked
+                        ? [...form.allowedBranches, branch]
+                        : form.allowedBranches.filter((b) => b !== branch);
+                      setForm({ ...form, allowedBranches: updated });
+                    }}
+                  />
+                  {branch}
+                </label>
+              ))}
+            </div>
+          </div>
           <input
             placeholder="Required skills (comma separated)"
             value={form.requiredSkills}

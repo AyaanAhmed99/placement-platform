@@ -14,4 +14,5 @@ export interface Job {
   approved: boolean;
   createdAt: string;
   company?: { name: string; industry: string | null; location: string | null };
+  eligibility?: { eligible: boolean; reasons: string[] };
 }
