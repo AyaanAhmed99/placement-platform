@@ -43,7 +43,7 @@ export async function editSkill(req: Request, res: Response) {
   try {
     const skill = await updateSkill(
       req.user!.userId,
-      req.params.id,
+      String(req.params.id),
       parsed.data,
     );
     res.status(200).json({ success: true, data: skill });
@@ -54,7 +54,7 @@ export async function editSkill(req: Request, res: Response) {
 
 export async function removeSkill(req: Request, res: Response) {
   try {
-    await deleteSkill(req.user!.userId, req.params.id);
+    await deleteSkill(req.user!.userId, String(req.params.id));
     res.status(204).send();
   } catch (err) {
     handleError(err, res);

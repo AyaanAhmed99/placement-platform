@@ -44,7 +44,7 @@ export async function listPublic(req: Request, res: Response) {
 
 export async function getOne(req: Request, res: Response) {
   try {
-    const job = await getJobById(req.params.id);
+    const job = await getJobById(String(req.params.id));
     res.status(200).json({ success: true, data: job });
   } catch (err) {
     handleError(err, res);
@@ -59,7 +59,11 @@ export async function edit(req: Request, res: Response) {
       .json({ success: false, errors: parsed.error.issues });
   }
   try {
-    const job = await updateJob(req.user!.userId, req.params.id, parsed.data);
+    const job = await updateJob(
+      req.user!.userId,
+      String(req.params.id),
+      parsed.data,
+    );
     res.status(200).json({ success: true, data: job });
   } catch (err) {
     handleError(err, res);
@@ -68,7 +72,7 @@ export async function edit(req: Request, res: Response) {
 
 export async function remove(req: Request, res: Response) {
   try {
-    await deleteJob(req.user!.userId, req.params.id);
+    await deleteJob(req.user!.userId, String(req.params.id));
     res.status(204).send();
   } catch (err) {
     handleError(err, res);
@@ -82,7 +86,7 @@ export async function pending(_req: Request, res: Response) {
 
 export async function approve(req: Request, res: Response) {
   try {
-    const job = await approveJob(req.params.id);
+    const job = await approveJob(String(req.params.id));
     res.status(200).json({ success: true, data: job });
   } catch (err) {
     handleError(err, res);

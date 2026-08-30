@@ -36,7 +36,10 @@ export async function mine(req: Request, res: Response) {
 
 export async function applicants(req: Request, res: Response) {
   try {
-    const list = await getApplicantsForJob(req.user!.userId, req.params.jobId);
+    const list = await getApplicantsForJob(
+      req.user!.userId,
+      String(req.params.jobId),
+    );
     res.status(200).json({ success: true, data: list });
   } catch (err) {
     handleError(err, res);
@@ -53,7 +56,7 @@ export async function updateStatus(req: Request, res: Response) {
   try {
     const application = await updateApplicationStatus(
       req.user!.userId,
-      req.params.id,
+      String(req.params.id),
       parsed.data.status,
       parsed.data.interviewDate,
     );

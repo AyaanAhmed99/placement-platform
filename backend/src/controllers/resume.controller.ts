@@ -1,5 +1,9 @@
 import { Request, Response } from "express";
-import { uploadResume, getResume } from "../services/resume.service";
+import {
+  uploadResume,
+  getResume,
+  deleteResume,
+} from "../services/resume.service";
 
 export async function upload(req: Request, res: Response) {
   if (!req.file) {

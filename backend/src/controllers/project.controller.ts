@@ -43,7 +43,7 @@ export async function editProject(req: Request, res: Response) {
   try {
     const project = await updateProject(
       req.user!.userId,
-      req.params.id,
+      String(req.params.id),
       parsed.data,
     );
     res.status(200).json({ success: true, data: project });
@@ -54,7 +54,7 @@ export async function editProject(req: Request, res: Response) {
 
 export async function removeProject(req: Request, res: Response) {
   try {
-    await deleteProject(req.user!.userId, req.params.id);
+    await deleteProject(req.user!.userId, String(req.params.id));
     res.status(204).send();
   } catch (err) {
     handleError(err, res);

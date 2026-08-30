@@ -39,7 +39,7 @@ export async function listAll(_req: Request, res: Response) {
 
 export async function approve(req: Request, res: Response) {
   try {
-    const company = await approveCompany(req.params.id);
+    const company = await approveCompany(String(req.params.id));
     res.status(200).json({ success: true, data: company });
   } catch (err) {
     handleError(err, res);

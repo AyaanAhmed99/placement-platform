@@ -43,7 +43,7 @@ export async function editEducation(req: Request, res: Response) {
   try {
     const education = await updateEducation(
       req.user!.userId,
-      req.params.id,
+      String(req.params.id),
       parsed.data,
     );
     res.status(200).json({ success: true, data: education });
@@ -54,7 +54,7 @@ export async function editEducation(req: Request, res: Response) {
 
 export async function removeEducation(req: Request, res: Response) {
   try {
-    await deleteEducation(req.user!.userId, req.params.id);
+    await deleteEducation(req.user!.userId, String(req.params.id));
     res.status(204).send();
   } catch (err) {
     handleError(err, res);
