@@ -46,3 +46,10 @@ export async function getResume(userId: string) {
   const studentId = await getStudentProfileId(userId);
   return prisma.resume.findUnique({ where: { studentId } });
 }
+
+export async function deleteResume(userId: string) {
+  const studentId = await getStudentProfileId(userId);
+  const existing = await prisma.resume.findUnique({ where: { studentId } });
+  if (!existing) throw new Error("RESUME_NOT_FOUND");
+  await prisma.resume.delete({ where: { studentId } });
+}

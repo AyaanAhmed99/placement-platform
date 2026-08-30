@@ -43,3 +43,12 @@ function handleError(err: unknown, res: Response) {
   console.error(err);
   res.status(500).json({ success: false, message: "Something went wrong" });
 }
+
+export async function remove(req: Request, res: Response) {
+  try {
+    await deleteResume(req.user!.userId);
+    res.status(204).send();
+  } catch (err) {
+    res.status(404).json({ success: false, message: "No resume to remove" });
+  }
+}
