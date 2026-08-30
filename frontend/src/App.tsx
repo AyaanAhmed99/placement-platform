@@ -6,6 +6,7 @@ import { useAuth } from "./context/AuthContext";
 import Jobs from "./pages/Jobs";
 import MyApplications from "./pages/MyApplications";
 import JobApplicants from "./pages/JobApplicants";
+import StudentProfile from "./pages/StudentProfile";
 
 export default function App() {
   const { user } = useAuth();
@@ -40,6 +41,11 @@ export default function App() {
         path="/jobs/:jobId/applicants"
         element={user ? <JobApplicants /> : <Navigate to="/login" />}
       />
+      <Route
+        path="/profile"
+        element={user ? <StudentProfile /> : <Navigate to="/login" />}
+      />
+      ;
     </Routes>
   );
 }
