@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import api from "../api/axios";
 import type { Applicant, ApplicationStatus } from "../types/application";
+import Navbar from "../components/Navbar";
 
 const statuses: ApplicationStatus[] = [
   "APPLIED",
@@ -43,9 +44,10 @@ export default function JobApplicants() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 p-8">
+    <div className="min-h-screen bg-paper">
+      <Navbar />
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-2xl font-semibold text-slate-800 mb-6">
+        <h1 className="font-display text-2xl font-semibold text-navy mb-6">
           Applicants
         </h1>
 
@@ -55,7 +57,10 @@ export default function JobApplicants() {
 
         <div className="space-y-4">
           {applicants.map((app) => (
-            <div key={app.id} className="bg-white p-5 rounded-lg shadow-md">
+            <div
+              key={app.id}
+              className="bg-white p-5 rounded-lg shadow-sm border-l-4 border-navy"
+            >
               <div className="flex items-start justify-between">
                 <div>
                   <p className="font-medium text-slate-800">

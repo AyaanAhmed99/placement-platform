@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import api from "../api/axios";
 import type { Application } from "../types/application";
+import Navbar from "../components/Navbar";
 
 const statusColors: Record<string, string> = {
   APPLIED: "bg-slate-100 text-slate-600",
-  UNDER_REVIEW: "bg-blue-100 text-blue-700",
-  SHORTLISTED: "bg-purple-100 text-purple-700",
-  INTERVIEW_SCHEDULED: "bg-yellow-100 text-yellow-700",
-  SELECTED: "bg-green-100 text-green-700",
-  REJECTED: "bg-red-100 text-red-700",
+  UNDER_REVIEW: "bg-navy/10 text-navy",
+  SHORTLISTED: "bg-gold-light text-navy-dark",
+  INTERVIEW_SCHEDULED: "bg-gold text-navy-dark",
+  SELECTED: "bg-institution-green/15 text-institution-green",
+  REJECTED: "bg-brick/15 text-brick",
 };
 
 export default function MyApplications() {
@@ -26,9 +27,10 @@ export default function MyApplications() {
     return <p className="text-slate-500 p-8">Loading your applications...</p>;
 
   return (
-    <div className="min-h-screen bg-slate-50 p-8">
+    <div className="min-h-screen bg-paper">
+      <Navbar />
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-2xl font-semibold text-slate-800 mb-6">
+        <h1 className="font-display text-2xl font-semibold text-navy mb-6">
           My Applications
         </h1>
 
@@ -40,7 +42,7 @@ export default function MyApplications() {
           {applications.map((app) => (
             <div
               key={app.id}
-              className="bg-white p-5 rounded-lg shadow-md flex items-center justify-between"
+              className="bg-white p-5 rounded-lg shadow-sm border-l-4 border-navy flex items-center justify-between"
             >
               <div>
                 <p className="font-medium text-slate-800">{app.job.title}</p>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import api from "../api/axios";
 import { useAuth } from "../context/AuthContext";
 import type { Job } from "../types/job";
+import Navbar from "../components/Navbar";
 
 export default function Jobs() {
   const [jobs, setJobs] = useState<Job[]>([]);
@@ -40,9 +41,10 @@ export default function Jobs() {
   if (loading) return <p className="text-slate-500 p-8">Loading jobs...</p>;
 
   return (
-    <div className="min-h-screen bg-slate-50 p-8">
+    <div className="min-h-screen bg-paper">
+      <Navbar />
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-2xl font-semibold text-slate-800 mb-6">
+        <h1 className="font-display text-2xl font-semibold text-navy mb-6">
           Open Positions
         </h1>
 
@@ -56,10 +58,13 @@ export default function Jobs() {
           {jobs.map((job) => {
             const alreadyApplied = appliedJobIds.has(job.id);
             return (
-              <div key={job.id} className="bg-white p-6 rounded-lg shadow-md">
+              <div
+                key={job.id}
+                className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-navy"
+              >
                 <div className="flex items-start justify-between">
                   <div>
-                    <h2 className="text-lg font-semibold text-slate-800">
+                    <h2 className="font-display text-lg font-semibold text-navy">
                       {job.title}
                     </h2>
                     <p className="text-sm text-slate-500">
@@ -101,15 +106,15 @@ export default function Jobs() {
                 {user?.role === "STUDENT" && job.eligibility && (
                   <div className="mt-3">
                     {job.eligibility.eligible ? (
-                      <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-medium">
+                      <span className="text-xs bg-institution-green/15 text-institution-green px-2 py-1 rounded-full font-medium">
                         ✓ You're eligible
                       </span>
                     ) : (
                       <div>
-                        <span className="text-xs bg-red-50 text-red-600 px-2 py-1 rounded-full font-medium">
+                        <span className="text-xs bg-brick/15 text-brick px-2 py-1 rounded-full font-medium">
                           Not eligible
                         </span>
-                        <ul className="text-xs text-red-500 mt-1 list-disc list-inside">
+                        <ul className="text-xs text-brick mt-1 list-disc list-inside">
                           {job.eligibility.reasons.map((r, i) => (
                             <li key={i}>{r}</li>
                           ))}
@@ -123,7 +128,7 @@ export default function Jobs() {
                   <button
                     onClick={() => handleApply(job.id)}
                     disabled={alreadyApplied || applyingTo === job.id}
-                    className="mt-4 bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 disabled:bg-slate-300 disabled:cursor-not-allowed"
+                    className="mt-4 bg-navy text-white px-4 py-2 rounded text-sm hover:bg-navy-dark disabled:bg-slate-300 disabled:cursor-not-allowed"
                   >
                     {alreadyApplied
                       ? "Applied ✓"

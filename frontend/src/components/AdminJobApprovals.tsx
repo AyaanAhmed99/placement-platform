@@ -25,8 +25,8 @@ export default function AdminJobApprovals() {
   if (loading) return <p className="text-slate-500">Loading pending jobs...</p>;
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md mt-4">
-      <h2 className="text-lg font-semibold text-slate-800 mb-4">
+    <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-navy mt-4">
+      <h2 className="font-display text-lg font-semibold text-navy mb-4">
         Pending Jobs
       </h2>
 
@@ -46,7 +46,7 @@ export default function AdminJobApprovals() {
             </div>
             <button
               onClick={() => approve(job.id)}
-              className="text-xs bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
+              className="text-xs bg-institution-green text-white px-3 py-1 rounded hover:opacity-90"
             >
               Approve
             </button>

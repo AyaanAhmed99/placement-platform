@@ -48,10 +48,14 @@ export default function AdminStats() {
       {cards.map((c) => (
         <div
           key={c.label}
-          className="bg-white p-4 rounded-lg shadow-md text-center"
+          className="bg-white rounded-lg shadow-sm border-t-2 border-gold p-4 text-center min-w-0"
         >
-          <p className="text-2xl font-semibold text-slate-800">{c.value}</p>
-          <p className="text-xs text-slate-500 mt-1">{c.label}</p>
+          <p className="stat-figure text-lg sm:text-xl font-semibold text-navy break-words">
+            {c.value}
+          </p>
+          <p className="text-xs text-slate-500 mt-1 uppercase tracking-wide">
+            {c.label}
+          </p>
         </div>
       ))}
     </div>

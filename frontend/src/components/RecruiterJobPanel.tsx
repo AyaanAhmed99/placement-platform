@@ -35,9 +35,8 @@ export default function RecruiterJobPanel() {
         description: form.description,
         location: form.location || undefined,
         minCgpa: form.minCgpa ? Number(form.minCgpa) : undefined,
-        allowedBranches: form.allowedBranches
-          ? form.allowedBranches.split(",").map((s) => s.trim())
-          : undefined,
+        allowedBranches:
+          form.allowedBranches.length > 0 ? form.allowedBranches : undefined,
         maxBacklogs: form.maxBacklogs ? Number(form.maxBacklogs) : undefined,
         eligibleBatch: form.eligibleBatch
           ? Number(form.eligibleBatch)
@@ -52,7 +51,7 @@ export default function RecruiterJobPanel() {
         description: "",
         location: "",
         minCgpa: "",
-        allowedBranches: "",
+        allowedBranches: [],
         maxBacklogs: "",
         eligibleBatch: "",
         requiredSkills: "",
@@ -64,14 +63,14 @@ export default function RecruiterJobPanel() {
   }
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md mt-4">
+    <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-navy mt-4">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-slate-800">
+        <h2 className="font-display text-lg font-semibold text-navy">
           Your Job Postings
         </h2>
         <button
           onClick={() => setShowForm(!showForm)}
-          className="text-sm bg-blue-600 text-white px-3 py-1.5 rounded hover:bg-blue-700"
+          className="text-sm bg-navy text-white px-3 py-1.5 rounded hover:bg-navy-dark"
         >
           {showForm ? "Cancel" : "Post a Job"}
         </button>
@@ -120,7 +119,7 @@ export default function RecruiterJobPanel() {
             />
           </div>
           <input
-            placeholder="Eligible batch (e.g. 2027)"
+            placeholder="Eligible batch (e.g. 2028)"
             value={form.eligibleBatch}
             onChange={(e) =>
               setForm({ ...form, eligibleBatch: e.target.value })
@@ -168,7 +167,7 @@ export default function RecruiterJobPanel() {
           />
           <button
             type="submit"
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            className="bg-navy text-white px-4 py-2 rounded hover:bg-navy-dark"
           >
             Submit for approval
           </button>
@@ -194,8 +193,8 @@ export default function RecruiterJobPanel() {
               <span
                 className={`text-xs px-2 py-1 rounded-full ${
                   job.approved
-                    ? "bg-green-100 text-green-700"
-                    : "bg-yellow-100 text-yellow-700"
+                    ? "bg-institution-green/15 text-institution-green"
+                    : "bg-gold-light text-navy-dark"
                 }`}
               >
                 {job.approved ? "Approved" : "Pending approval"}

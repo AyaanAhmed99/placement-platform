@@ -46,16 +46,16 @@ export default function RecruiterCompanyPanel() {
 
   if (company) {
     return (
-      <div className="bg-white p-6 rounded-lg shadow-md mt-4">
+      <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-navy mt-4">
         <div className="flex items-center justify-between mb-2">
-          <h2 className="text-lg font-semibold text-slate-800">
+          <h2 className="font-display text-lg font-semibold text-navy">
             {company.name}
           </h2>
           <span
             className={`text-xs px-2 py-1 rounded-full ${
               company.approved
-                ? "bg-green-100 text-green-700"
-                : "bg-yellow-100 text-yellow-700"
+                ? "bg-institution-green/15 text-institution-green"
+                : "bg-gold-light text-navy-dark"
             }`}
           >
             {company.approved ? "Approved" : "Pending approval"}
@@ -70,14 +70,14 @@ export default function RecruiterCompanyPanel() {
   }
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md mt-4">
-      <h2 className="text-lg font-semibold text-slate-800 mb-2">
+    <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-navy mt-4">
+      <h2 className="font-display text-lg font-semibold text-navy mb-2">
         No company yet
       </h2>
       {!showForm ? (
         <button
           onClick={() => setShowForm(true)}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="bg-navy text-white px-4 py-2 rounded hover:bg-navy-dark"
         >
           Create Company
         </button>
@@ -117,7 +117,7 @@ export default function RecruiterCompanyPanel() {
           />
           <button
             type="submit"
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            className="bg-navy text-white px-4 py-2 rounded hover:bg-navy-dark"
           >
             Submit
           </button>

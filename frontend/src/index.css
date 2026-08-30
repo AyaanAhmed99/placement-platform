@@ -1,1 +1,38 @@
 @import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  --color-navy: #1b2a4a;
+  --color-navy-dark: #131f38;
+  --color-paper: #f6f5f1;
+  --color-gold: #c89b3c;
+  --color-gold-light: #f0e2c0;
+  --color-institution-green: #2f7d5a;
+  --color-brick: #b3432b;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-paper);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+}
+
+.stat-figure {
+  font-family: var(--font-mono);
+}
+
+button:not(:disabled) {
+  cursor: pointer !important;
+}
+
+button:disabled {
+  cursor: not-allowed !important;
+}
