@@ -479,7 +479,7 @@ function ResumeSection() {
 
   async function handleRemove() {
     const previousResume = resume;
-    setResume(null); // update UI immediately, don't wait for the network
+    setResume(null);
 
     try {
       await api.delete("/resume");
@@ -500,7 +500,7 @@ function ResumeSection() {
         <div className="flex items-center gap-3 mb-3">
           <button
             onClick={() => window.open(resume.fileUrl, "_blank")}
-            className="text-sm file:mr-3 file:py-2 file:px-4 file:rounded file:border-0 file:bg-navy file:text-white file:cursor-pointer hover:file:bg-navy-dark"
+            className="text-sm text-navy underline hover:text-navy-dark"
           >
             {resume.fileName}
           </button>
@@ -517,7 +517,7 @@ function ResumeSection() {
         accept="application/pdf"
         onChange={handleUpload}
         disabled={uploading}
-        className="text-sm file:mr-3 file:py-2 file:px-4 file:rounded file:border-0 file:bg-navy file:text-white file:cursor-pointer hover:file:bg-blue-700"
+        className="text-sm file:mr-3 file:py-2 file:px-4 file:rounded file:border-0 file:bg-navy file:text-white file:cursor-pointer hover:file:bg-navy-dark"
       />
       {uploading && <p className="text-xs text-slate-400 mt-1">Uploading...</p>}
     </div>

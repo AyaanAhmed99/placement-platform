@@ -10,6 +10,8 @@ export default function RecruiterJobPanel() {
     title: "",
     description: "",
     location: "",
+    salaryMin: "",
+    salaryMax: "",
     minCgpa: "",
     allowedBranches: [] as string[],
     maxBacklogs: "",
@@ -34,6 +36,8 @@ export default function RecruiterJobPanel() {
         title: form.title,
         description: form.description,
         location: form.location || undefined,
+        salaryMin: form.salaryMin ? Number(form.salaryMin) : undefined,
+        salaryMax: form.salaryMax ? Number(form.salaryMax) : undefined,
         minCgpa: form.minCgpa ? Number(form.minCgpa) : undefined,
         allowedBranches:
           form.allowedBranches.length > 0 ? form.allowedBranches : undefined,
@@ -50,6 +54,8 @@ export default function RecruiterJobPanel() {
         title: "",
         description: "",
         location: "",
+        salaryMin: "",
+        salaryMax: "",
         minCgpa: "",
         allowedBranches: [],
         maxBacklogs: "",
@@ -102,6 +108,20 @@ export default function RecruiterJobPanel() {
             onChange={(e) => setForm({ ...form, location: e.target.value })}
             className="w-full border border-slate-300 rounded px-3 py-2"
           />
+          <div className="grid grid-cols-2 gap-3">
+            <input
+              placeholder="Min salary (₹/year)"
+              value={form.salaryMin}
+              onChange={(e) => setForm({ ...form, salaryMin: e.target.value })}
+              className="border border-slate-300 rounded px-3 py-2"
+            />
+            <input
+              placeholder="Max salary (₹/year)"
+              value={form.salaryMax}
+              onChange={(e) => setForm({ ...form, salaryMax: e.target.value })}
+              className="border border-slate-300 rounded px-3 py-2"
+            />
+          </div>
           <div className="grid grid-cols-2 gap-3">
             <input
               placeholder="Min CGPA (e.g. 7.5)"
