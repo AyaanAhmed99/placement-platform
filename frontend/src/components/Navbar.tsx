@@ -7,17 +7,17 @@ export default function Navbar() {
 
   return (
     <div className="bg-navy mb-6">
-      <div className="max-w-3xl mx-auto px-8 py-4 flex items-center justify-between">
+      <div className="max-w-3xl mx-auto px-4 sm:px-8 py-4 flex flex-wrap items-center justify-between gap-y-3">
         <Link
           to="/dashboard"
-          className="font-display font-semibold text-white tracking-tight mr-2"
+          className="font-display font-semibold text-white tracking-tight mr-4 sm:mr-8"
         >
           Placement Office
         </Link>
-        <div className="flex gap-5 items-center text-sm">
+        <div className="flex flex-wrap gap-3 sm:gap-5 items-center text-sm">
           <Link
             to="/dashboard"
-            className="text-gold-light hover:text-gold transition-colors mr-2"
+            className="text-gold-light hover:text-gold transition-colors"
           >
             Dashboard
           </Link>

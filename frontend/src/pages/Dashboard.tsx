@@ -12,7 +12,7 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-paper">
       <Navbar />
-      <div className="max-w-2xl mx-auto px-8">
+      <div className="max-w-2xl mx-auto px-4 sm:px-8 py-4 sm:py-8">
         <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-navy">
           <h1 className="font-display text-xl font-semibold text-navy">
             Welcome, {user?.email}

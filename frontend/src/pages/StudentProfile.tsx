@@ -21,9 +21,9 @@ const BRANCHES = [
 
 export default function StudentProfile() {
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-paper">
       <Navbar />
-      <div className="max-w-2xl mx-auto space-y-4">
+      <div className="max-w-2xl mx-auto px-4 sm:px-8 py-4 sm:py-8 space-y-4">
         <h1 className="font-display text-2xl font-semibold text-navy">
           My Profile
         </h1>{" "}

@@ -29,7 +29,7 @@ export default function MyApplications() {
   return (
     <div className="min-h-screen bg-paper">
       <Navbar />
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-3xl mx-auto px-4 sm:px-8 py-4 sm:py-8">
         <h1 className="font-display text-2xl font-semibold text-navy mb-6">
           My Applications
         </h1>
