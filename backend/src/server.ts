@@ -12,11 +12,44 @@ import jobRoutes from "./routes/job.routes";
 import applicationRoutes from "./routes/application.routes";
 import adminRoutes from "./routes/admin.routes";
 import studentRoutes from "./routes/student.routes";
+import rateLimit from "express-rate-limit";
+import helmet from "helmet";
 
 const app = express();
 
-app.use(cors());
+app.set("etag", false);
+
+app.use((req, res, next) => {
+  res.set("Cache-Control", "no-store");
+  next();
+});
+
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    credentials: true,
+  }),
+);
 app.use(express.json());
+app.use(helmet());
+
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 20,
+  message: {
+    success: false,
+    message: "Too many attempts, please try again later",
+  },
+});
+
+const generalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 300,
+});
+
+app.use("/api/auth", authLimiter);
+app.use("/api", generalLimiter);
+
 app.use("/api/auth", authRoutes);
 app.use("/api/education", educationRoutes);
 app.use("/api/skills", skillRoutes);
